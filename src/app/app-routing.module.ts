@@ -7,6 +7,9 @@ import { AdduserComponent } from './components/adduser/adduser.component';
 import { canaddGuard } from './guards/canadd.guard';
 import { EditComponent } from './components/edit/edit.component';
 import { editGuard } from './guards/edit.guard';
+import { VacuumhomeComponent } from './components/vacuumhome/vacuumhome.component';
+import { norolesGuard } from './guards/noroles.guard';
+import { ErrormsgComponent } from './components/errormsg/errormsg.component';
 
 const routes: Routes = [
   {
@@ -27,6 +30,15 @@ const routes: Routes = [
     path: "edit/:email",
     component: EditComponent,
     canActivate: [editGuard]
+  },
+  {
+    path: "vacuumcontrol",
+    component: VacuumhomeComponent,
+    canActivate: [norolesGuard]
+  },
+  {
+    path: "errors",
+    component: ErrormsgComponent
   }
 ];
 

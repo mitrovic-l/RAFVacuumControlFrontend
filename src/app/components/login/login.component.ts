@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
             alert("Nemate ni jednu permisiju!");
           }
         }
-        this.router.navigate(['/']);
+        this.router.navigate(['/vacuumcontrol']);
       }
       else {
         this.errorMsg = 'Neispravno uneti podaci!';

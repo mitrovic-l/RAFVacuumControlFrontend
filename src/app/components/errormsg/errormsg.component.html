@@ -1,0 +1,33 @@
+<div>
+    <h2 class="text-center">Pregled gresaka</h2>
+    
+    <div>
+      <table class="table table-striped table-bordered">
+        <caption>
+          Tabela gresaka
+        </caption>
+        <thead class="thead thead-dark">
+          <tr>
+            <th scope="col">Operacija</th>
+            <th scope="col">Poruka</th>
+            <th scope="col">Datum</th>
+            <th scope="col">Usisivac</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let error of errors; let i = index">
+            <td>
+                <p [ngClass]="{'text-danger': error.operation === 'STOP', 'text-success': error.operation === 'START', 'text-warning': error.operation === 'DISCHARGE'}" class="p">
+                   <b> {{ error.operation }} </b>
+                </p>
+            </td>
+            <td>{{ error.message }}</td>
+            <td> {{ error.date }} </td>
+            <td class="text-info">{{ error.vacuum.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <br>
+  </div>

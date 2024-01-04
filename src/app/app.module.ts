@@ -12,6 +12,8 @@ import { AdduserComponent } from './components/adduser/adduser.component';
 import { RolePipe } from './pipes/role.pipe'
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/edit/edit.component';
+import { VacuumhomeComponent } from './components/vacuumhome/vacuumhome.component';
+import { ErrormsgComponent } from './components/errormsg/errormsg.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -20,6 +22,8 @@ import { EditComponent } from './components/edit/edit.component';
     AdduserComponent,
     RolePipe,
     EditComponent,
+    VacuumhomeComponent,
+    ErrormsgComponent,
     
   ],
   imports: [

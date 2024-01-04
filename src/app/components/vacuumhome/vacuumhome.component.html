@@ -1,0 +1,42 @@
+<div>
+    <h2 class="text-center">Pregled Vasih usisivaca</h2>
+    
+    <div>
+      <table class="table table-hover table-dark table-bordered">
+        <caption>
+          Tabela usisivaca
+        </caption>
+        <thead class="thead thead-dark">
+          <tr>
+            <th scope="col">Ime</th>
+            <th scope="col">Status</th>
+            <th scope="col">Dodat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vacuum of vacuums; let i = index" (click)="selectVacuum(vacuum)">
+            <td class="text-info">{{ vacuum.name }}</td>
+            <td>
+                <p [ngClass]="{'text-danger': vacuum.status === 'OFF', 'text-success': vacuum.status === 'ON', 'text-warning': vacuum.status === 'DISCHARGING'}" class="p">
+                   <b> {{ vacuum.status }} </b>
+                </p>
+            </td>
+            <td class="text-light">{{ vacuum.dateAdded }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="selectedVacuum" class="popup">
+        <div class="popup-content">
+          <h4>{{ selectedVacuum.name }}</h4>
+          <!-- Dodati da su disabled oni za koje nema dozvolu. -->
+          <button class="btn btn-success">Turn On</button>
+          <button class="btn btn-danger">Turn Off</button>
+          <button class="btn btn-warning">Discharge</button>
+          <button class="btn btn-outline-dark">Schedule</button>
+          <button class="btn btn-secondary" (click)="closePopup()">Close</button>
+        </div>
+      </div>
+    <br>
+    <br>
+  </div>
