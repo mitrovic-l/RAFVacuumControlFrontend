@@ -6,13 +6,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
         <li class="nav-item">
+            <a class="nav-link" routerLink="/vacuumcontrol" routerLinkActive="text-success" [routerLinkActiveOptions]="{exact: true}">Home</a>
+          </li>
+        <li class="nav-item">
           <a class="nav-link">Search</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Add</a>
+          <a class="nav-link" routerLink="/vacuumcontrol/add" routerLinkActive="text-success" [routerLinkActiveOptions]="{exact: true}">Add</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/errors">Errors</a>
+          <a class="nav-link" routerLink="/errors" routerLinkActive="text-success" [routerLinkActiveOptions]="{exact: true}">Errors</a>
         </li>
       </ul>
       <div class="ms-auto" *ngIf="showLogout">
@@ -20,9 +23,7 @@
       </div>
     </div>
   </nav>
-  
     <div class="container pt-3">
-        
         <router-outlet></router-outlet>
     </div>
 

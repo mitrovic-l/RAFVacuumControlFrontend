@@ -17,4 +17,11 @@ export class VacuumService {
     //return this.httpClient.get<User>(`${this.apiUrl}/user/find/`+email, {headers});
     return this.httpClient.get<Vacuum[]>(`${this.apiUrl}/vacuum/all`, {headers});
   }
+
+  addVacuum(name: string): Observable<Vacuum> {
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.post<Vacuum>(`${this.apiUrl}/vacuum/add`, {
+      name: name
+    }, { headers });
+  }
 }

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './components/edit/edit.component';
 import { VacuumhomeComponent } from './components/vacuumhome/vacuumhome.component';
 import { ErrormsgComponent } from './components/errormsg/errormsg.component';
+import { AddvacuumComponent } from './components/addvacuum/addvacuum.component';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -24,6 +25,7 @@ import { ErrormsgComponent } from './components/errormsg/errormsg.component';
     EditComponent,
     VacuumhomeComponent,
     ErrormsgComponent,
+    AddvacuumComponent,
     
   ],
   imports: [

@@ -1,0 +1,15 @@
+
+            <div class="card-body p-5 text-center">
+                <h2 class="text">Dodajte novi usisivac</h2>
+                <form [formGroup]="vacuumForm" (submit)="addVacuum()">
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Name</label>
+                      <input [formControlName]="'name'" type="text" class="form-control" id="name" name="name">
+                      <div class="error-message text-danger" *ngIf="vacuumForm.get('name')?.errors?.['required']"> Name is required! </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <button [disabled]="!vacuumForm.valid" type="submit" class="btn btn-success">Add vacuum</button>
+                    </div>
+                  </form>  
+            </div>

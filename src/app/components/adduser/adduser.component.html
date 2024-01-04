@@ -15,7 +15,7 @@
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Ime</label>
                       <input [formControlName]="'firstname'" type="text" class="form-control" id="firstname" name="firstname">
-                      <div class="error-message text-danger" *ngIf="userForm.get('lastname')?.errors?.['required']"> First name is required! </div>
+                      <div class="error-message text-danger" *ngIf="userForm.get('firstname')?.errors?.['required']"> First name is required! </div>
                     </div>
                   
                     <div class="form-group">

@@ -10,6 +10,8 @@ import { editGuard } from './guards/edit.guard';
 import { VacuumhomeComponent } from './components/vacuumhome/vacuumhome.component';
 import { norolesGuard } from './guards/noroles.guard';
 import { ErrormsgComponent } from './components/errormsg/errormsg.component';
+import { AddvacuumComponent } from './components/addvacuum/addvacuum.component';
+import { addvacuumGuard } from './guards/addvacuum.guard';
 
 const routes: Routes = [
   {
@@ -35,6 +37,11 @@ const routes: Routes = [
     path: "vacuumcontrol",
     component: VacuumhomeComponent,
     canActivate: [norolesGuard]
+  },
+  {
+    path: "vacuumcontrol/add",
+    component: AddvacuumComponent,
+    canActivate: [addvacuumGuard]
   },
   {
     path: "errors",
