@@ -36,8 +36,36 @@
           <button class="btn btn-success" [ngClass]="{'disabled': selectedVacuumStatus === 'ON' || !(currentRoles.indexOf('vacuum_start') > -1)}" (click)="turnOnVacuum(selectedVacuum.id, selectedVacuum)">Turn On</button>
           <button class="btn btn-danger" [ngClass]="{'disabled': selectedVacuumStatus === 'OFF' || !(currentRoles.indexOf('vacuum_stop') > -1)}" (click)="turnOffVacuum(selectedVacuum.id, selectedVacuum)">Turn Off</button>
           <button class="btn btn-warning" [ngClass]="{'disabled': selectedVacuumStatus === 'DISCHARGING' || !(currentRoles.indexOf('vacuum_discharge') > -1)}" (click)="dischargeVacuum(selectedVacuum.id)">Discharge</button>
-          <button class="btn btn-outline-primary">Schedule</button>
-          <button class="btn btn-secondary" (click)="deactivateVacuum(selectedVacuum.id)">Deactivate</button>
+          <br>
+          <hr>
+          <form class="p-2 mt-2">
+            <label for="dateInput">Date</label><br>
+            <input type="date" id="dateInput" name="dateInput" [(ngModel)]="selectedDate">
+            <br>
+            <label for="timeInput">Time</label><br>
+            <input type="time" id="timeInput" name="timeInput" [(ngModel)]="selectedTime">
+            <br>
+            <div>
+              <br>
+            <label class="text-secondary">Choose an operation</label>
+            <div>
+              <input type="radio" id="statusOn" name="status" value="START" [(ngModel)]="selectedStatus">
+              <label for="statusOn">START</label>
+            </div>
+            <div>
+              <input type="radio" id="statusOff" name="status" value="STOP" [(ngModel)]="selectedStatus">
+              <label for="statusOff">STOP</label>
+            </div>
+            <div>
+              <input type="radio" id="statusDischarging" name="status" value="DISCHARGE" [(ngModel)]="selectedStatus">
+              <label for="statusDischarging">DISCHARGE</label>
+            </div>
+          </div>
+            <br>
+            <button class="btn btn-primary" (click)="schedule(selectedVacuum.id)">Schedule</button>
+          </form>
+          <hr>
+          <button class="btn btn-secondary p-2" (click)="deactivateVacuum(selectedVacuum.id)">Deactivate</button>
         </div>
       </div>
     <br>

@@ -14,6 +14,9 @@ export class VacuumhomeComponent implements OnInit{
   selectedVacuum: any = null;
   selectedVacuumStatus: string = ''
   currentRoles: string[] = [];
+  selectedDate: string = ''
+  selectedTime: string = ''
+  selectedStatus: string = ''
   constructor(private vacuumService: VacuumService){
     this.vacuums = [];
   }
@@ -97,6 +100,20 @@ export class VacuumhomeComponent implements OnInit{
       });
     }, error => {
       alert(JSON.stringify( error ));
+    });
+  }
+  schedule(vacuumId: number){
+    if (this.selectedDate === '' || this.selectedTime === '' || this.selectedStatus === ''){
+      alert("Morate popuniti sva polja za zakazivanje operacije!");
+      return;
+    }
+    let scheduledTime = this.selectedDate + 'T' + this.selectedTime + ':00';
+    console.log(scheduledTime);
+    this.vacuumService.scheduleVacuumOperation(vacuumId, this.selectedStatus, scheduledTime).subscribe( data => {
+      alert(JSON.stringify(data))
+      this.selectedVacuum = null;
+    }, error => {
+      alert(JSON.stringify("Desila se greska: " + JSON.stringify(error)))
     });
   }
 }

@@ -45,4 +45,12 @@ export class VacuumService {
     const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
     return this.httpClient.get(`${this.apiUrl}/vacuum/discharge/${vacuumId}`, { headers });
   }
+  scheduleVacuumOperation(vacuumId: number, operation: string, scheduledTime: string){
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.post(`${this.apiUrl}/vacuum/schedule`, {
+      vacuumId: vacuumId,
+      scheduledTime: scheduledTime,
+      operation: operation
+    }, { headers, responseType: 'text' });
+  }
 }
