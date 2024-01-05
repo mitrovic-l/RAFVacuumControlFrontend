@@ -29,11 +29,74 @@ export class VacuumhomeComponent implements OnInit{
     this.currentRoles = roles.roles;
   }
   selectVacuum(vacuum: any) {
+    if (vacuum.status === 'PROCESSING'){
+      return
+    }
     this.selectedVacuum = vacuum;
     this.selectedVacuumStatus = vacuum.status;
   }
 
   closePopup() {
     this.selectedVacuum = null;
+  }
+
+  turnOnVacuum(vacuumId: number, vacuum: Vacuum){
+    this.vacuumService.turnOnVacuum(vacuumId).subscribe( data => {
+      vacuum.status = 'PROCESSING'
+      this.selectedVacuum = null;
+      setTimeout(() => {
+        this.vacuumService.getVacuums().subscribe( data2 => {
+          this.vacuums = data2;
+        }); 
+      }, 15200);
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+  }
+  turnOffVacuum(vacuumId: number, vacuum: Vacuum){
+    this.vacuumService.turnOffVacuum(vacuumId).subscribe( data => {
+      vacuum.status = 'PROCESSING'
+      this.selectedVacuum = null
+      if (vacuum.startCount === 3){
+        setTimeout(() => {
+          this.vacuumService.getVacuums().subscribe( data2 => {
+            this.vacuums = data2;
+          });
+        }, 32200);
+      } else {
+        setTimeout(() => {
+          this.vacuumService.getVacuums().subscribe( data2 => {
+            this.vacuums = data2;
+          });
+        }, 18200);
+      }
+    }, error => {
+      alert(JSON.stringify(error));
+    });
+  }
+  deactivateVacuum(vacuumId: number){
+    this.vacuumService.deactivateVacuum(vacuumId).subscribe( data => {
+      this.vacuumService.getVacuums().subscribe( data2 => {
+        this.selectedVacuum = null
+        this.vacuums = data2;
+      });
+    }, error => {
+      alert(JSON.stringify( error ));
+    })
+  }
+  dischargeVacuum(vacuumId: number){
+    this.vacuumService.dischargeVacuum(vacuumId).subscribe( data => {
+      this.vacuumService.getVacuums().subscribe( data2 => {
+        this.selectedVacuum = null
+        this.vacuums = data2
+        setTimeout(() => {
+          this.vacuumService.getVacuums().subscribe( data3 => {
+            this.vacuums = data3;
+          });
+        }, 32200);
+      });
+    }, error => {
+      alert(JSON.stringify( error ));
+    });
   }
 }

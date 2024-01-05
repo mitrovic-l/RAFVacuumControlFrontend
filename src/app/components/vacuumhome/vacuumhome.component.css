@@ -26,3 +26,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
+  .table-fixed{
+    width: 200px;
+  }
+  .table2-fixed{
+    width: 1064px;
+  }

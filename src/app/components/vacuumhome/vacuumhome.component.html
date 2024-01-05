@@ -10,14 +10,14 @@
           <tr>
             <th scope="col">Ime</th>
             <th scope="col">Status</th>
-            <th scope="col">Dodat</th>
+            <th scope="col">Dodato</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let vacuum of vacuums; let i = index" (click)="selectVacuum(vacuum)">
             <td class="text-info">{{ vacuum.name }}</td>
-            <td>
-                <p [ngClass]="{'text-danger': vacuum.status === 'OFF', 'text-success': vacuum.status === 'ON', 'text-warning': vacuum.status === 'DISCHARGING'}" class="p">
+            <td class="table-fixed">
+                <p [ngClass]="{'text-danger': vacuum.status === 'OFF', 'text-success': vacuum.status === 'ON', 'text-warning': vacuum.status === 'DISCHARGING', 'text-primary': vacuum.status === 'PROCESSING'}" class="p">
                    <b> {{ vacuum.status }} </b>
                 </p>
             </td>
@@ -30,10 +30,14 @@
     <div *ngIf="selectedVacuum" class="popup">
         <div class="popup-content">
           <h4>{{ selectedVacuum.name }}</h4>
-          <button class="btn btn-success" [ngClass]="{'disabled': selectedVacuumStatus === 'ON', 'hidden': !(currentRoles.indexOf('vacuum_start') > -1)}">Turn On</button>
-          <button class="btn btn-danger" [ngClass]="{'disabled': selectedVacuumStatus === 'OFF', 'hidden': !(currentRoles.indexOf('vacuum_stop') > -1)}">Turn Off</button>
-          <button class="btn btn-warning" [ngClass]="{'disabled': selectedVacuumStatus === 'DISCHARGING', 'hidden': !(currentRoles.indexOf('vacuum_discharge') > -1)}">Discharge</button>
+          <small>Currently: <small [ngClass]="{'text-danger': selectedVacuum.status === 'OFF', 'text-success': selectedVacuum.status === 'ON', 'text-warning': selectedVacuum.status === 'DISCHARGING'}" class="p">
+            <b> {{ selectedVacuum.status }} </b>
+         </small></small><br>
+          <button class="btn btn-success" [ngClass]="{'disabled': selectedVacuumStatus === 'ON' || !(currentRoles.indexOf('vacuum_start') > -1)}" (click)="turnOnVacuum(selectedVacuum.id, selectedVacuum)">Turn On</button>
+          <button class="btn btn-danger" [ngClass]="{'disabled': selectedVacuumStatus === 'OFF' || !(currentRoles.indexOf('vacuum_stop') > -1)}" (click)="turnOffVacuum(selectedVacuum.id, selectedVacuum)">Turn Off</button>
+          <button class="btn btn-warning" [ngClass]="{'disabled': selectedVacuumStatus === 'DISCHARGING' || !(currentRoles.indexOf('vacuum_discharge') > -1)}" (click)="dischargeVacuum(selectedVacuum.id)">Discharge</button>
           <button class="btn btn-outline-primary">Schedule</button>
+          <button class="btn btn-secondary" (click)="deactivateVacuum(selectedVacuum.id)">Deactivate</button>
         </div>
       </div>
     <br>

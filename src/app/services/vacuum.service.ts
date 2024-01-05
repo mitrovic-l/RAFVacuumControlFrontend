@@ -29,4 +29,20 @@ export class VacuumService {
     const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
     return this.httpClient.get<Vacuum[]>(`${this.apiUrl}/vacuum/search/${query}`, {headers});
   }
+  turnOnVacuum(vacuumId: number){
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.get(`${this.apiUrl}/vacuum/start/${vacuumId}`, { headers });
+  }
+  turnOffVacuum(vacuumId: number){
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.get(`${this.apiUrl}/vacuum/stop/${vacuumId}`, { headers });
+  }
+  deactivateVacuum(vacuumId: number): Observable<Vacuum>{
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.delete<Vacuum>(`${this.apiUrl}/vacuum/remove/${vacuumId}`, { headers });
+  }
+  dischargeVacuum(vacuumId: number){
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.get(`${this.apiUrl}/vacuum/discharge/${vacuumId}`, { headers });
+  }
 }
