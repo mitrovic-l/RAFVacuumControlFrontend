@@ -15,6 +15,8 @@ import { EditComponent } from './components/edit/edit.component';
 import { VacuumhomeComponent } from './components/vacuumhome/vacuumhome.component';
 import { ErrormsgComponent } from './components/errormsg/errormsg.component';
 import { AddvacuumComponent } from './components/addvacuum/addvacuum.component';
+import { SearchvacuumComponent } from './components/searchvacuum/searchvacuum.component';
+import { searchGuard } from './guards/search.guard';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -26,6 +28,7 @@ import { AddvacuumComponent } from './components/addvacuum/addvacuum.component';
     VacuumhomeComponent,
     ErrormsgComponent,
     AddvacuumComponent,
+    SearchvacuumComponent,
     
   ],
   imports: [

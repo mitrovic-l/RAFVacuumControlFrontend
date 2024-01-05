@@ -24,4 +24,9 @@ export class VacuumService {
       name: name
     }, { headers });
   }
+
+  searchVacuums(query: string): Observable<Vacuum[]> {
+    const headers = { 'Authorization': 'Bearer ' +  localStorage.getItem("JWT")};
+    return this.httpClient.get<Vacuum[]>(`${this.apiUrl}/vacuum/search/${query}`, {headers});
+  }
 }

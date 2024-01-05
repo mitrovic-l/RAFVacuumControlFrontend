@@ -1,5 +1,5 @@
-<div>
-    <h2 class="text-center">Pregled Vasih usisivaca</h2>
+<div class="p-5">
+    <h2>Pregled Vasih usisivaca</h2>
     
     <div>
       <table class="table table-hover table-dark table-bordered">
@@ -26,15 +26,14 @@
         </tbody>
       </table>
     </div>
+    <div *ngIf="selectedVacuum" class="overlay" (click)="closePopup()"></div>
     <div *ngIf="selectedVacuum" class="popup">
         <div class="popup-content">
           <h4>{{ selectedVacuum.name }}</h4>
-          <!-- Dodati da su disabled oni za koje nema dozvolu. -->
-          <button class="btn btn-success">Turn On</button>
-          <button class="btn btn-danger">Turn Off</button>
-          <button class="btn btn-warning">Discharge</button>
-          <button class="btn btn-outline-dark">Schedule</button>
-          <button class="btn btn-secondary" (click)="closePopup()">Close</button>
+          <button class="btn btn-success" [ngClass]="{'disabled': selectedVacuumStatus === 'ON', 'hidden': !(currentRoles.indexOf('vacuum_start') > -1)}">Turn On</button>
+          <button class="btn btn-danger" [ngClass]="{'disabled': selectedVacuumStatus === 'OFF', 'hidden': !(currentRoles.indexOf('vacuum_stop') > -1)}">Turn Off</button>
+          <button class="btn btn-warning" [ngClass]="{'disabled': selectedVacuumStatus === 'DISCHARGING', 'hidden': !(currentRoles.indexOf('vacuum_discharge') > -1)}">Discharge</button>
+          <button class="btn btn-outline-primary">Schedule</button>
         </div>
       </div>
     <br>

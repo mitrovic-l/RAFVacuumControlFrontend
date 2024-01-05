@@ -12,6 +12,8 @@ import { norolesGuard } from './guards/noroles.guard';
 import { ErrormsgComponent } from './components/errormsg/errormsg.component';
 import { AddvacuumComponent } from './components/addvacuum/addvacuum.component';
 import { addvacuumGuard } from './guards/addvacuum.guard';
+import { SearchvacuumComponent } from './components/searchvacuum/searchvacuum.component';
+import { searchGuard } from './guards/search.guard';
 
 const routes: Routes = [
   {
@@ -42,6 +44,11 @@ const routes: Routes = [
     path: "vacuumcontrol/add",
     component: AddvacuumComponent,
     canActivate: [addvacuumGuard]
+  },
+  {
+    path: "vacuumcontrol/search",
+    component: SearchvacuumComponent,
+    canActivate: [searchGuard]
   },
   {
     path: "errors",

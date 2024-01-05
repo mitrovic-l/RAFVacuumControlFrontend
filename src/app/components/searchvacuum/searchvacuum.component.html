@@ -1,0 +1,70 @@
+<div class="p-5">
+    <h2>Pretraga usisivaca</h2>
+    <form>
+        <!-- Pretraga po imenu -->
+        <div class="form-group">
+          <label for="searchName">Ime:</label>
+          <input type="text" id="searchName" class="form-control" [(ngModel)]="searchName" [ngModelOptions]="{standalone: true}">
+        </div>
+      
+        <!-- Checkboxovi za statuse -->
+        <div class="form-group">
+          <label>Status:</label>
+          <div>
+            <input type="checkbox" id="statusOn" [(ngModel)]="statusOn" [ngModelOptions]="{standalone: true}">
+            <label for="statusOn">ON</label>
+          </div>
+          <div>
+            <input type="checkbox" id="statusOff" [(ngModel)]="statusOff" [ngModelOptions]="{standalone: true}">
+            <label for="statusOff">OFF</label>
+          </div>
+          <div>
+            <input type="checkbox" id="statusDischarging" [(ngModel)]="statusDischarging" [ngModelOptions]="{standalone: true}">
+            <label for="statusDischarging">DISCHARGING</label>
+          </div>
+        </div>
+      
+        <!-- Pretraga po datumima -->
+        <div class="form-group">
+          <label for="startDate">Od datuma:</label>
+          <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="endDate">Do datuma:</label>
+          <input type="date" id="endDate" class="form-control" [(ngModel)]="endDate" [ngModelOptions]="{standalone: true}">
+        </div>
+      
+        <!-- Dugme za pretragu -->
+        <br>
+        <button type="button" class="btn btn-primary" (click)="searchVacuums()">Pretraži</button>
+      </form>
+      <br>
+      <br>
+      <h3>Rezultati</h3>
+      
+      <!-- Prikaz rezultata -->
+      <table class="table table-hover table-dark table-bordered">
+        <caption>
+          Tabela usisivaca
+        </caption>
+        <thead class="thead thead-dark">
+          <tr>
+            <th scope="col">Ime</th>
+            <th scope="col">Status</th>
+            <th scope="col">Dodat</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vacuum of vacuums; let i = index">
+            <td class="text-info">{{ vacuum.name }}</td>
+            <td>
+                <p [ngClass]="{'text-danger': vacuum.status === 'OFF', 'text-success': vacuum.status === 'ON', 'text-warning': vacuum.status === 'DISCHARGING'}" class="p">
+                   <b> {{ vacuum.status }} </b>
+                </p>
+            </td>
+            <td class="text-light">{{ vacuum.dateAdded }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
